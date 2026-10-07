@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<!-- saved from url=(0045)https://almeida-cma.github.io/mob11/hall.html -->
+<html lang="pt-BR"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎃 Especial de Halloween: Histórias, Códigos &amp; OneCompiler</title>
+<style>
+:root {
+    --bg: #090a10;
+    --surface: #121422;
+    --surface-hover: #1b1e33;
+    --orange: #f97316;
+    --orange-dark: #c2410c;
+    --purple: #a855f7;
+    --purple-dark: #6b21a8;
+    --green: #22c55e;
+    --yellow: #facc15;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --border: #262a42;
+    --radius: 18px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body, button, input, textarea {
+    font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji',
+                 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+body {
+    background: radial-gradient(circle at top, #1e1435 0%, #090a10 60%);
+    color: var(--text-main);
+    min-height: 100vh;
+    padding: 24px 16px 80px;
+    line-height: 1.6;
+}
+.container { max-width: 1050px; margin: 0 auto; }
+.hero-halloween {
+    background: linear-gradient(135deg, rgba(168,85,247,0.2) 0%, rgba(249,115,22,0.2) 100%);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 34px 24px;
+    text-align: center;
+    margin-bottom: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+.hero-halloween h1 {
+    font-size: 2.2rem;
+    color: var(--orange);
+    text-shadow: 0 0 14px rgba(249,115,22,0.5);
+    margin-bottom: 8px;
+}
+.hero-halloween h1 span { color: var(--purple); }
+.hero-halloween p {
+    color: var(--text-muted);
+    max-width: 780px;
+    margin: 0 auto;
+    font-size: 0.98rem;
+}
+.badges-top { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 16px; }
+.badge {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--border);
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+.tabs-nav { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 22px; }
+.tab-btn {
+    background: var(--surface);
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    padding: 12px 20px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: 0.2s;
+}
+.tab-btn:hover { color: #fff; background: var(--surface-hover); }
+.tab-btn.active {
+    background: var(--orange);
+    color: #fff;
+    border-color: var(--orange);
+    box-shadow: 0 0 16px rgba(249, 115, 22, 0.4);
+}
+.tab-content { display: none; animation: fadeIn 0.3s ease-out; }
+.tab-content.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+.card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 26px;
+    margin-bottom: 22px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+.card h2 {
+    color: var(--orange);
+    margin-bottom: 14px;
+    display: flex; align-items: center; gap: 8px;
+    font-size: 1.4rem;
+}
+.card p { color: #cbd5e1; font-size: 0.95rem; margin-bottom: 12px; }
+.callout { padding: 14px 18px; border-radius: 12px; margin: 14px 0; font-size: 0.92rem; line-height: 1.6; }
+.callout.orange { background: rgba(249, 115, 22, 0.1); border-left: 4px solid var(--orange); color: #fed7aa; }
+.callout.purple { background: rgba(168, 85, 247, 0.1); border-left: 4px solid var(--purple); color: #e9d5ff; }
+.grid-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 16px 0; }
+.item-card {
+    background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 14px;
+    padding: 18px; transition: 0.2s;
+}
+.item-card:hover { transform: translateY(-3px); border-color: var(--purple); background: var(--surface-hover); }
+.item-card .icone { font-size: 2.2rem; margin-bottom: 8px; display: block; }
+.item-card h4 { font-size: 1.05rem; margin-bottom: 6px; color: #fff; }
+.item-card p { font-size: 0.85rem; color: var(--text-muted); margin: 0; }
+.lab-card {
+    background: #0d0f1a;
+    border: 2px solid var(--border);
+    border-radius: 16px;
+    padding: 22px;
+    margin-bottom: 26px;
+}
+.lab-header {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 10px; margin-bottom: 14px;
+}
+.lab-title { font-size: 1.15rem; font-weight: 800; color: #f8fafc; display: flex; align-items: center; gap: 8px; }
+.btn-onecompiler {
+    background: linear-gradient(135deg, #ea580c, #f59e0b);
+    color: white; border: none; padding: 8px 16px; border-radius: 20px;
+    font-size: 0.82rem; font-weight: 800; cursor: pointer; transition: 0.2s;
+    display: inline-flex; align-items: center; gap: 6px; text-decoration: none;
+}
+.btn-onecompiler:hover { transform: scale(1.04); box-shadow: 0 0 14px rgba(234, 88, 12, 0.4); }
+.lab-preview {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 20px; text-align: center; margin-bottom: 16px;
+}
+.code-nav { display: flex; gap: 4px; border-bottom: 2px solid var(--border); margin-bottom: 0; flex-wrap: wrap; }
+.code-tab-btn {
+    background: transparent; border: none; color: var(--text-muted);
+    padding: 8px 14px; font-size: 0.82rem; font-weight: 700; cursor: pointer;
+    border-bottom: 3px solid transparent; transition: 0.2s; font-family: inherit;
+}
+.code-tab-btn:hover { color: #fff; background: rgba(255,255,255,0.04); }
+.code-tab-btn.active { color: var(--purple); border-bottom-color: var(--purple); background: rgba(168,85,247,0.08); }
+.code-pane-box {
+    position: relative; background: #05060b; border-radius: 0 0 12px 12px;
+    border: 1px solid var(--border); border-top: none; overflow: hidden; margin-bottom: 10px;
+}
+.code-pane { display: none; margin: 0; }
+.code-pane.active { display: block; }
+.code-pane pre {
+    padding: 16px; color: #e2e8f0; font-family: 'Courier New', monospace;
+    font-size: 0.82rem; line-height: 1.6; overflow-x: auto; white-space: pre; max-height: 280px;
+}
+.btn-copy-code {
+    position: absolute; top: 10px; right: 10px; background: var(--green);
+    color: #052e16; border: none; padding: 5px 12px; border-radius: 6px;
+    font-size: 0.74rem; font-weight: 800; cursor: pointer; transition: 0.2s; z-index: 2;
+}
+.btn-copy-code:hover { background: #16a34a; color: #fff; }
+.btn-widget {
+    background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+    color: white; border: none; padding: 10px 20px; border-radius: 20px;
+    font-weight: 700; cursor: pointer; transition: 0.2s; font-size: 0.88rem; margin: 4px;
+}
+.btn-widget:hover { transform: scale(1.03); box-shadow: 0 0 12px rgba(249, 115, 22, 0.4); }
+.btn-widget.purple { background: linear-gradient(135deg, var(--purple), var(--purple-dark)); }
+.question-box {
+    background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: 14px;
+    padding: 18px; margin-bottom: 14px; border-left: 4px solid var(--orange);
+}
+.q-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 12px; }
+.options-list { display: flex; flex-direction: column; gap: 8px; }
+.opt-choice {
+    padding: 10px 14px; background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; cursor: pointer; font-size: 0.88rem; transition: 0.2s; text-align: left;
+    color: #cbd5e1;
+}
+.opt-choice:hover:not(.locked) { border-color: var(--orange); background: var(--surface-hover); }
+.opt-choice.correct { background: rgba(34, 197, 94, 0.2) !important; border-color: var(--green) !important; font-weight: bold; color: #86efac; }
+.opt-choice.wrong   { background: rgba(239, 68, 68, 0.2) !important; border-color: #ef4444 !important; color: #fca5a5; }
+.quiz-result {
+    display: none; background: rgba(168,85,247,0.1); border: 2px solid var(--purple);
+    border-radius: var(--radius); padding: 24px; text-align: center; margin-top: 20px;
+}
+.quiz-result.show { display: block; }
+.score-big { font-size: 3rem; font-weight: 900; color: var(--yellow); }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<header class="hero-halloween">
+    <h1>🎃 Halloween <span>Tech Lab</span></h1>
+    <p>Um ambiente leve e descontraído para aprender as origens do feriado pelo mundo, testar códigos no OneCompiler com abas separadas e relaxar com um quiz temático!</p>
+    <div class="badges-top">
+        <span class="badge">📜 Histórias &amp; Lendas</span>
+        <span class="badge">🌍 Celebrações no Mundo</span>
+        <span class="badge">💻 OneCompiler Ready (HTML / CSS / JS)</span>
+        <span class="badge">🧙 Quiz com Pontuação</span>
+    </div>
+</header>
+
+<nav class="tabs-nav">
+    <button class="tab-btn" onclick="trocarAbaPrincipal('aba-origens', this)">📜 1. Origens &amp; Lendas</button>
+    <button class="tab-btn" onclick="trocarAbaPrincipal('aba-mundo', this)">🌍 2. Pelo Mundo &amp; Tradições</button>
+    <button class="tab-btn" onclick="trocarAbaPrincipal('aba-codigos', this)">💻 3. Caldeirão de Códigos (OneCompiler)</button>
+    <button class="tab-btn active" onclick="trocarAbaPrincipal('aba-quiz', this)">🧙 4. Quiz do Dia das Bruxas</button>
+</nav>
+
+<div id="aba-origens" class="tab-content">
+    <section class="card">
+        <h2>🕯️ De Onde Veio o Halloween?</h2>
+        <p>O Halloween tem mais de <strong>2.000 anos de história</strong> e não começou como uma festa de compras ou cinema, mas como um ritual milenar ligado à natureza e às estações do ano.</p>
+
+        <div class="callout orange">
+            🌾 <strong>O Festival Celta de Samhain (Pronuncia-se "Sow-in"):</strong><br>
+            Os povos celtas da antiga Irlanda e Reino Unido comemoravam o fim da colheita e o início do rigoroso inverno na virada de 31 de outubro. Acreditava-se que, nessa noite, o véu entre o mundo dos vivos e dos mortos se abria. As pessoas acendiam fogueiras sagradas e usavam peles e máscaras para se protegerem e enganarem espíritos errantes.
+        </div>
+
+        <div class="grid-cards">
+            <div class="item-card">
+                <span class="icone">🎃</span>
+                <h4>A Lenda de Jack O'Lantern</h4>
+                <p>O folclore irlandês conta a história de Stingy Jack, um ferreiro tão esperto que enganou o Diabo várias vezes. Sem poder entrar no céu nem no inferno após partir, ganhou uma brasa acesa que colocou dentro de um <strong>nabo entalhado</strong> para iluminar seu caminho. Ao chegarem à América, os imigrantes trocaram os nabos por <strong>abóboras</strong>, que eram mais fáceis de esculpir.</p>
+            </div>
+            <div class="item-card">
+                <span class="icone">🍬</span>
+                <h4>Doces ou Travessuras?</h4>
+                <p>Originou-se do costume medieval do <em>"souling"</em>: cidadãos batiam de porta em porta oferecendo rezas pelos antepassados da família em troca dos <em>soul cakes</em> (bolos da alma). Se uma casa recusasse hospitalidade, acreditava-se que perderia a bênção na colheita.</p>
+            </div>
+            <div class="item-card">
+                <span class="icone">🎭</span>
+                <h4>Por que nos Fantasiamos?</h4>
+                <p>A fantasia nasceu como uma <strong>camuflagem mágica</strong>: se alguém precisasse sair na escuridão da noite de Samhain, vestia-se como criatura mística para que os espíritos pensassem que a pessoa também era um ser do além e não a perturbassem.</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div id="aba-mundo" class="tab-content">
+    <section class="card">
+        <h2>🌍 Tradições de Halloween pelo Planeta</h2>
+        <p>Cada país expressa o fascínio pelo mistério e a homenagem aos seus antepassados com costumes únicos:</p>
+
+        <div class="grid-cards">
+            <div class="item-card">
+                <span class="icone">🇮🇪</span>
+                <h4>Irlanda (O Berço)</h4>
+                <p>Celebrações com grandes fogueiras rurais e a tradicional torta <em>Barmbrack</em>, que esconde anéis e moedas para prever a sorte de quem encontrar o pedaço.</p>
+            </div>
+            <div class="item-card">
+                <span class="icone">🇺🇸</span>
+                <h4>Estados Unidos &amp; Canadá</h4>
+                <p>Decorações cinematográficas nas casas, parques temáticos de abóboras e multidões de crianças fantasiadas percorrendo as ruas ao entardecer.</p>
+            </div>
+            <div class="item-card">
+                <span class="icone">🇲🇽</span>
+                <h4>México (Día de los Muertos)</h4>
+                <p>Comemorado em 1 e 2 de novembro com alegria, altares de flores alaranjadas (<em>cempasúchil</em>), caveiras de açúcar e banquetes para celebrar a memória amorosa dos falecidos.</p>
+            </div>
+            <div class="item-card">
+                <span class="icone">🇧🇷</span>
+                <h4>Brasil: Dia do Saci</h4>
+                <p>Comemorado oficialmente em 31 de outubro (Lei Federal nº 11.669) para valorizar as figuras autênticas do nosso folclore: o Saci-Pererê, a Cuca, o Curupira e o Boitatá!</p>
+            </div>
+        </div>
+
+        <div class="callout purple">
+            🏰 <strong>Curiosidade Europeia:</strong> Na Romênia, viajantes visitam a região enevoada da Transilvânia e o Castelo de Bran, lendária residência atribuída ao mito do Conde Drácula.
+        </div>
+    </section>
+</div>
+
+<div id="aba-codigos" class="tab-content">
+    <section class="card">
+        <h2>💻 Caldeirão de Códigos (Laboratórios Interativos)</h2>
+        <p>Veja como criar brincadeiras interativas usando apenas <strong>HTML, CSS e JavaScript</strong>. Você pode testar na própria tela, alternar as abas de código para copiar partes separadas ou abrir diretamente no <strong>OneCompiler</strong> com 1 clique!</p>
+
+        <div class="lab-card" id="card-lab1">
+            <div class="lab-header">
+                <div class="lab-title">🎃 Lab 1: A Abóbora que Muda de Humor (DOM)</div>
+                <button class="btn-onecompiler" onclick="abrirNoOneCompiler('lab1')">▶️ Abrir no OneCompiler</button>
+            </div>
+
+            <div class="lab-preview">
+                <div id="demo-lab1-emoji" style="font-size: 4.8rem; transition: transform 0.2s;">🎃</div>
+                <p id="demo-lab1-txt" style="color:var(--orange); font-weight: bold; margin: 8px 0;">Estado: Abóbora Sorridente</p>
+                <button class="btn-widget" onclick="executarDemoLab1()">🪄 Mudar Expressão com JS</button>
+            </div>
+
+            <div class="code-nav">
+                <button class="code-tab-btn" onclick="trocarAbaCodigo('lab1', 'html', this)">📄 HTML</button>
+                <button class="code-tab-btn" onclick="trocarAbaCodigo('lab1', 'css', this)">🎨 CSS</button>
+                <button class="code-tab-btn" onclick="trocarAbaCodigo('lab1', 'js', this)">⚙️ JS</button>
+                <button class="code-tab-btn active" onclick="trocarAbaCodigo('lab1', 'tudo', this)">📦 Tudo (Arquivo Único)</button>
+            </div>
+
+            <div class="code-pane-box">
+                <button class="btn-copy-code" onclick="copiarTrechoLab('lab1', this)">📋 Copiar</button>
+                <div class="code-pane" id="lab1-pane-html"><pre>&lt;!-- Elementos da tela: Um emoji, um texto de status e o bot&amp;#227;o de clique --&gt;
+&lt;div class="card"&gt;
+  &lt;div id="abobora" class="icone-abobora"&gt;&amp;#x1F383;&lt;/div&gt;
+  &lt;p id="status-texto"&gt;Estado: Ab&amp;#243;bora Sorridente&lt;/p&gt;
+  &lt;button onclick="mudarHumor()"&gt;Mudar Express&amp;#227;o&lt;/button&gt;
+&lt;/div&gt;</pre></div>
+                <div class="code-pane" id="lab1-pane-css"><pre>body {
+  font-family: sans-serif;
+  background: #0f172a;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.card {
+  text-align: center;
+  background: #1e293b;
+  padding: 30px;
+  border-radius: 16px;
+  border: 2px solid #f97316;
+}
+
+.icone-abobora {
+  font-size: 5rem;
+  margin-bottom: 10px;
+  transition: transform 0.2s ease;
+}
+
+button {
+  background: #f97316;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}</pre></div>
+                <div class="code-pane" id="lab1-pane-js"><pre>// Lista de personagens e frases
+var estados = [
+  { emoji: "\uD83C\uDF83", texto: "Ab\u00F3bora Sorridente" },
+  { emoji: "\uD83D\uDC7B", texto: "Fantasminha Amig\u00E1vel" },
+  { emoji: "\uD83E\uDDDB", texto: "Vampiro Noturno" },
+  { emoji: "\uD83D\uDC80", texto: "Esqueleto Tagarela" }
+];
+
+var posicao = 0;
+
+function mudarHumor() {
+  posicao = (posicao + 1) % estados.length;
+  document.getElementById("abobora").innerText = estados[posicao].emoji;
+  document.getElementById("status-texto").innerText = "Estado: " + estados[posicao].texto;
+}</pre></div>
+                <div class="code-pane active" id="lab1-pane-tudo"><pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Lab 1 - A Ab&amp;#243;bora que Muda de Humor&lt;/title&gt;
+  &lt;style&gt;
+    body { font-family: sans-serif; background: #0f172a; color: white; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+    .card { text-align: center; background: #1e293b; padding: 30px; border-radius: 16px; border: 2px solid #f97316; }
+    .icone-abobora { font-size: 5rem; margin-bottom: 10px; }
+    button { background: #f97316; color: white; border: none; padding: 10px 20px; border-radius: 20px; font-weight: bold; cursor: pointer; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="card"&gt;
+    &lt;div id="abobora" class="icone-abobora"&gt;&amp;#x1F383;&lt;/div&gt;
+    &lt;p id="status-texto"&gt;Estado: Ab&amp;#243;bora Sorridente&lt;/p&gt;
+    &lt;button onclick="mudarHumor()"&gt;Mudar Express&amp;#227;o&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;script&gt;
+    var estados = [
+      { emoji: "\uD83C\uDF83", texto: "Ab\u00F3bora Sorridente" },
+      { emoji: "\uD83D\uDC7B", texto: "Fantasminha Amig\u00E1vel" },
+      { emoji: "\uD83E\uDDDB", texto: "Vampiro Noturno" },
+      { emoji: "\uD83D\uDC80", texto: "Esqueleto Tagarela" }
+    ];
+    var posicao = 0;
+    function mudarHumor() {
+      posicao = (posicao + 1) % estados.length;
+      document.getElementById("abobora").innerText = estados[posicao].emoji;
+      document.getElementById("status-texto").innerText = "Estado: " + estados[posicao].texto;
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre></div>
+            </div>
+        </div>
+
+        <div class="lab-card" id="card-lab2">
+            <div class="lab-header">
+                <div class="lab-title">🧪 Lab 2: Gerador de Poções Mágicas (Arrays &amp; Random)</div>
+                <button class="btn-onecompiler" onclick="abrirNoOneCompiler('lab2')">▶️ Abrir no OneCompiler</button>
+            </div>
+
+            <div class="lab-preview">
+                <div style="font-size: 3.5rem;">🧙🥣</div>
+                <div id="demo-lab2-resultado" style="font-size: 1.1rem; color: var(--green); font-weight: bold; min-height: 30px; margin: 8px 0;">💨 Elixir da Invisibilidade Temporária</div>
+                <button class="btn-widget purple" onclick="executarDemoLab2()">✨ Conjurando Feitiço Aleatório</button>
+            </div>
+
+            <div class="code-nav">
+                <button class="code-tab-btn active" onclick="trocarAbaCodigo('lab2', 'html', this)">📄 HTML</button>
+                <button class="code-tab-btn" onclick="trocarAbaCodigo('lab2', 'css', this)">🎨 CSS</button>
+                <button class="code-tab-btn" onclick="trocarAbaCodigo('lab2', 'js', this)">⚙️ JS</button>
+                <button class="code-tab-btn" onclick="trocarAbaCodigo('lab2', 'tudo', this)">📦 Tudo (Arquivo Único)</button>
+            </div>
+
+            <div class="code-pane-box">
+                <button class="btn-copy-code" onclick="copiarTrechoLab('lab2', this)">📋 Copiar</button>
+                <div class="code-pane active" id="lab2-pane-html"><pre>&lt;div class="caldeirao-box"&gt;
+  &lt;h2&gt;&amp;#x1F9D9; Caldeir&amp;#227;o de Po&amp;#231;&amp;#245;es&lt;/h2&gt;
+  &lt;div class="emoji-caldeirao"&gt;&amp;#x1F963;&lt;/div&gt;
+  &lt;p id="msg-pocao"&gt;Clique para preparar um elixir!&lt;/p&gt;
+  &lt;button onclick="sortearPocao()"&gt;&amp;#x2728; Mexer o Caldeir&amp;#227;o&lt;/button&gt;
+&lt;/div&gt;</pre></div>
+                <div class="code-pane" id="lab2-pane-css"><pre>body { font-family: sans-serif; background: #1e102d; color: #f1f5f9; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+.caldeirao-box { background: #2b1840; padding: 30px; border-radius: 20px; text-align: center; border: 2px solid #a855f7; box-shadow: 0 0 20px rgba(168, 85, 247, 0.3); }
+.emoji-caldeirao { font-size: 4rem; margin: 10px 0; }
+#msg-pocao { font-size: 1.1rem; color: #4ade80; font-weight: bold; }
+button { background: #a855f7; color: white; border: none; padding: 12px 24px; border-radius: 25px; font-weight: bold; cursor: pointer; }</pre></div>
+                <div class="code-pane" id="lab2-pane-js"><pre>var listaPocoes = [
+  "\u2615 Po\u00E7\u00E3o do Caf\u00E9 Infinito",
+  "\uD83D\uDCA8 Elixir da Invisibilidade Tempor\u00E1ria",
+  "\uD83C\uDF1F Feiti\u00E7o da Linha de C\u00F3digo Sem Bugs",
+  "\uD83C\uDF6C Xarope de Ab\u00F3bora Caramelizada",
+  "\uD83E\uDD89 Concentrado de Sabedoria de Coruja"
+];
+
+function sortearPocao() {
+  var sorteada = listaPocoes[Math.floor(Math.random() * listaPocoes.length)];
+  document.getElementById("msg-pocao").innerText = sorteada;
+}</pre></div>
+                <div class="code-pane" id="lab2-pane-tudo"><pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Lab 2 - Gerador de Po&amp;#231;&amp;#245;es M&amp;#225;gicas&lt;/title&gt;
+  &lt;style&gt;
+    body { font-family: sans-serif; background: #1e102d; color: #f1f5f9; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+    .caldeirao-box { background: #2b1840; padding: 30px; border-radius: 20px; text-align: center; border: 2px solid #a855f7; }
+    button { background: #a855f7; color: white; border: none; padding: 12px 24px; border-radius: 25px; font-weight: bold; cursor: pointer; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="caldeirao-box"&gt;
+    &lt;h2&gt;&amp;#x1F9D9; Caldeir&amp;#227;o de Po&amp;#231;&amp;#245;es&lt;/h2&gt;
+    &lt;p id="msg-pocao"&gt;Clique para preparar um elixir!&lt;/p&gt;
+    &lt;button onclick="sortearPocao()"&gt;&amp;#x2728; Mexer o Caldeir&amp;#227;o&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;script&gt;
+    var listaPocoes = ["\u2615 Po\u00E7\u00E3o do Caf\u00E9 Infinito", "\uD83D\uDCA8 Elixir da Invisibilidade", "\uD83C\uDF1F Feiti\u00E7o Sem Bugs", "\uD83C\uDF6C Xarope de Ab\u00F3bora", "\uD83E\uDD89 Sabedoria de Coruja"];
+    function sortearPocao() {
+      var s = listaPocoes[Math.floor(Math.random() * listaPocoes.length)];
+      document.getElementById("msg-pocao").innerText = s;
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre></div>
+            </div>
+        </div>
+
+        <div class="lab-card" id="card-lab3">
+            <div class="lab-header">
+                <div class="lab-title">🍬 Lab 3: Cesto de Doces ou Travessuras (Contador &amp; Lógica)</div>
+                <button class="btn-onecompiler" onclick="abrirNoOneCompiler('lab3')">▶️ Abrir no OneCompiler</button>
+            </div>
+
+            <div class="lab-preview">
+                <div style="font-size: 3rem;">🧺</div>
+                <h4 style="font-size: 1.4rem; color: var(--yellow); margin: 6px 0;">Doces no Cesto: <span id="demo-lab3-num">4</span></h4>
+                <button class="btn-widget" style="background:#16a34a;" onclick="executarDemoLab3(1)">🍬 Pedir Doce (+1)</button>
+                <button class="btn-widget" style="background:#dc2626;" onclick="executarDemoLab3(-1)">🦷 Comer Doce (-1)</button>
+            </div>
+
+            <div class="code-nav">
+                <button class="code-tab-btn active" onclick="trocarAbaCodigo('lab3', 'html', this)">📄 HTML</button>
+                <button class="code-tab-btn" onclick="trocarAbaCodigo('lab3', 'css', this)">🎨 CSS</button>
+                <button class="code-tab-btn" onclick="trocarAbaCodigo('lab3', 'js', this)">⚙️ JS</button>
+                <button class="code-tab-btn" onclick="trocarAbaCodigo('lab3', 'tudo', this)">📦 Tudo (Arquivo Único)</button>
+            </div>
+
+            <div class="code-pane-box">
+                <button class="btn-copy-code" onclick="copiarTrechoLab('lab3', this)">📋 Copiar</button>
+                <div class="code-pane active" id="lab3-pane-html"><pre>&lt;div class="cesto-box"&gt;
+  &lt;h2&gt;&amp;#x1F9FA; Doces ou Travessuras&lt;/h2&gt;
+  &lt;div class="total-display"&gt;Doces: &lt;span id="num-doces"&gt;0&lt;/span&gt;&lt;/div&gt;
+  &lt;button class="btn-ganhar" onclick="ajustarDoces(1)"&gt;&amp;#x1F36C; Pedir Doce (+1)&lt;/button&gt;
+  &lt;button class="btn-comer" onclick="ajustarDoces(-1)"&gt;&amp;#x1F9B7; Comer Doce (-1)&lt;/button&gt;
+&lt;/div&gt;</pre></div>
+                <div class="code-pane" id="lab3-pane-css"><pre>body { font-family: sans-serif; background: #0b132b; color: white; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+.cesto-box { background: #1c2541; padding: 30px; border-radius: 18px; text-align: center; border: 2px solid #facc15; }
+.total-display { font-size: 2rem; color: #facc15; font-weight: 900; margin: 14px 0; }
+button { border: none; padding: 10px 18px; border-radius: 20px; font-weight: bold; cursor: pointer; margin: 4px; }
+.btn-ganhar { background: #22c55e; color: white; }
+.btn-comer { background: #ef4444; color: white; }</pre></div>
+                <div class="code-pane" id="lab3-pane-js"><pre>var doces = 0;
+
+function ajustarDoces(quantidade) {
+  doces = Math.max(0, doces + quantidade);
+  document.getElementById("num-doces").innerText = doces;
+}</pre></div>
+                <div class="code-pane" id="lab3-pane-tudo"><pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Lab 3 - Contador de Doces&lt;/title&gt;
+  &lt;style&gt;
+    body { font-family: sans-serif; background: #0b132b; color: white; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+    .cesto-box { background: #1c2541; padding: 30px; border-radius: 18px; text-align: center; border: 2px solid #facc15; }
+    .total-display { font-size: 2rem; color: #facc15; font-weight: 900; margin: 14px 0; }
+    button { border: none; padding: 10px 18px; border-radius: 20px; font-weight: bold; cursor: pointer; margin: 4px; }
+    .btn-ganhar { background: #22c55e; color: white; }
+    .btn-comer { background: #ef4444; color: white; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="cesto-box"&gt;
+    &lt;h2&gt;&amp;#x1F9FA; Doces ou Travessuras&lt;/h2&gt;
+    &lt;div class="total-display"&gt;Doces: &lt;span id="num-doces"&gt;0&lt;/span&gt;&lt;/div&gt;
+    &lt;button class="btn-ganhar" onclick="ajustarDoces(1)"&gt;&amp;#x1F36C; Pedir Doce (+1)&lt;/button&gt;
+    &lt;button class="btn-comer" onclick="ajustarDoces(-1)"&gt;&amp;#x1F9B7; Comer Doce (-1)&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;script&gt;
+    var doces = 0;
+    function ajustarDoces(q) {
+      doces = Math.max(0, doces + q);
+      document.getElementById("num-doces").innerText = doces;
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre></div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div id="aba-quiz" class="tab-content active">
+    <section class="card">
+        <h2>🧙 Quiz dos Mistérios do Halloween</h2>
+        <p>Teste seus conhecimentos com 5 perguntas culturais e de lógica simples. Veja sua pontuação mágica ao final!</p>
+
+        <div class="question-box" id="q1">
+            <div class="q-title">1. Qual festival ancestral de colheita deu origem ao Halloween moderno?</div>
+            <div class="options-list">
+                <button class="opt-choice locked correct" onclick="responderQuiz('q1', this, true)">Festival Celta de Samhain</button>
+                <button class="opt-choice locked" onclick="responderQuiz('q1', this, false)">Festival Romano das Lanternas</button>
+                <button class="opt-choice locked" onclick="responderQuiz('q1', this, false)">Festa da Primavera Nórdica</button>
+            </div>
+        </div>
+
+        <div class="question-box" id="q2">
+            <div class="q-title">2. Antes das abóboras se tornarem populares na América, qual legume era entalhado na Irlanda?</div>
+            <div class="options-list">
+                <button class="opt-choice locked" onclick="responderQuiz('q2', this, false)">Batata-doce</button>
+                <button class="opt-choice locked correct" onclick="responderQuiz('q2', this, true)">Nabo</button>
+                <button class="opt-choice locked" onclick="responderQuiz('q2', this, false)">Cenoura</button>
+            </div>
+        </div>
+
+        <div class="question-box" id="q3">
+            <div class="q-title">3. O que também é celebrado oficialmente no Brasil em 31 de outubro?</div>
+            <div class="options-list">
+                <button class="opt-choice locked correct" onclick="responderQuiz('q3', this, true)">O Dia do Saci (valorizando o folclore nacional)</button>
+                <button class="opt-choice locked" onclick="responderQuiz('q3', this, false)">O Dia das Cavernas Encantadas</button>
+                <button class="opt-choice locked" onclick="responderQuiz('q3', this, false)">O Dia do Boto Cor-de-Rosa</button>
+            </div>
+        </div>
+
+        <div class="question-box" id="q4">
+            <div class="q-title">4. No México, a celebração do "Día de los Muertos" se destaca por:</div>
+            <div class="options-list">
+                <button class="opt-choice locked" onclick="responderQuiz('q4', this, false)">Ser um momento fúnebre de silêncio e medo</button>
+                <button class="opt-choice locked correct" onclick="responderQuiz('q4', this, true)">Ser uma festa colorida, alegre e afetuosa em memória dos entes queridos</button>
+                <button class="opt-choice locked" onclick="responderQuiz('q4', this, false)">Competições de sustos em cemétérios</button>
+            </div>
+        </div>
+
+        <div class="question-box" id="q5">
+            <div class="q-title">5. Se tivermos <code>let doces = 10;</code> e executarmos <code>doces = doces + 5;</code>, quantos doces teremos?</div>
+            <div class="options-list">
+                <button class="opt-choice locked correct" onclick="responderQuiz('q5', this, true)">15 doces</button>
+                <button class="opt-choice locked" onclick="responderQuiz('q5', this, false)">5 doces</button>
+                <button class="opt-choice locked" onclick="responderQuiz('q5', this, false)">105 doces</button>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 20px;">
+            <button class="btn-widget" style="padding:14px 30px; font-size:1rem;" onclick="calcularResultadoQuiz()">🏆 Calcular Meu Nível Mágico</button>
+        </div>
+
+        <div class="quiz-result show" id="quiz-resultado-box">
+            <h3>Seu Desempenho no Quiz:</h3>
+            <div class="score-big" id="score-display">5 / 5</div>
+            <p id="feedback-magico" style="font-weight: bold; font-size: 1.1rem; margin-top: 8px; color: var(--green);">🧙 Mestre Supremo da Magia! Você gabaritou tudo!</p>
+        </div>
+    </section>
+</div>
+
+</div>
+
+<script>
+var CODIGOS_LABS = {
+    lab1: {
+        html: '<!-- Elementos da tela: Um emoji, um texto de status e o bot&#227;o de clique -->\n' +
+              '<div class="card">\n' +
+              '  <div id="abobora" class="icone-abobora">&#x1F383;</div>\n' +
+              '  <p id="status-texto">Estado: Ab&#243;bora Sorridente</p>\n' +
+              '  <button onclick="mudarHumor()">Mudar Express&#227;o</button>\n' +
+              '</div>',
+        css: 'body {\n' +
+             '  font-family: sans-serif;\n' +
+             '  background: #0f172a;\n' +
+             '  color: white;\n' +
+             '  display: flex;\n' +
+             '  justify-content: center;\n' +
+             '  align-items: center;\n' +
+             '  height: 100vh;\n' +
+             '  margin: 0;\n' +
+             '}\n\n' +
+             '.card {\n' +
+             '  text-align: center;\n' +
+             '  background: #1e293b;\n' +
+             '  padding: 30px;\n' +
+             '  border-radius: 16px;\n' +
+             '  border: 2px solid #f97316;\n' +
+             '}\n\n' +
+             '.icone-abobora {\n' +
+             '  font-size: 5rem;\n' +
+             '  margin-bottom: 10px;\n' +
+             '  transition: transform 0.2s ease;\n' +
+             '}\n\n' +
+             'button {\n' +
+             '  background: #f97316;\n' +
+             '  color: white;\n' +
+             '  border: none;\n' +
+             '  padding: 10px 20px;\n' +
+             '  border-radius: 20px;\n' +
+             '  font-weight: bold;\n' +
+             '  cursor: pointer;\n' +
+             '}',
+        js: '// Lista de personagens e frases\n' +
+            'var estados = [\n' +
+            '  { emoji: "\\uD83C\\uDF83", texto: "Ab\\u00F3bora Sorridente" },\n' +
+            '  { emoji: "\\uD83D\\uDC7B", texto: "Fantasminha Amig\\u00E1vel" },\n' +
+            '  { emoji: "\\uD83E\\uDDDB", texto: "Vampiro Noturno" },\n' +
+            '  { emoji: "\\uD83D\\uDC80", texto: "Esqueleto Tagarela" }\n' +
+            '];\n\n' +
+            'var posicao = 0;\n\n' +
+            'function mudarHumor() {\n' +
+            '  posicao = (posicao + 1) % estados.length;\n' +
+            '  document.getElementById("abobora").innerText = estados[posicao].emoji;\n' +
+            '  document.getElementById("status-texto").innerText = "Estado: " + estados[posicao].texto;\n' +
+            '}',
+        tudo: '<!DOCTYPE html>\n' +
+              '<html lang="pt-BR">\n' +
+              '<head>\n' +
+              '  <meta charset="UTF-8">\n' +
+              '  <title>Lab 1 - A Ab&#243;bora que Muda de Humor</title>\n' +
+              '  <style>\n' +
+              '    body { font-family: sans-serif; background: #0f172a; color: white; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }\n' +
+              '    .card { text-align: center; background: #1e293b; padding: 30px; border-radius: 16px; border: 2px solid #f97316; }\n' +
+              '    .icone-abobora { font-size: 5rem; margin-bottom: 10px; }\n' +
+              '    button { background: #f97316; color: white; border: none; padding: 10px 20px; border-radius: 20px; font-weight: bold; cursor: pointer; }\n' +
+              '  </style>\n' +
+              '</head>\n' +
+              '<body>\n' +
+              '  <div class="card">\n' +
+              '    <div id="abobora" class="icone-abobora">&#x1F383;</div>\n' +
+              '    <p id="status-texto">Estado: Ab&#243;bora Sorridente</p>\n' +
+              '    <button onclick="mudarHumor()">Mudar Express&#227;o</button>\n' +
+              '  </div>\n' +
+              '  <script>\n' +
+              '    var estados = [\n' +
+              '      { emoji: "\\uD83C\\uDF83", texto: "Ab\\u00F3bora Sorridente" },\n' +
+              '      { emoji: "\\uD83D\\uDC7B", texto: "Fantasminha Amig\\u00E1vel" },\n' +
+              '      { emoji: "\\uD83E\\uDDDB", texto: "Vampiro Noturno" },\n' +
+              '      { emoji: "\\uD83D\\uDC80", texto: "Esqueleto Tagarela" }\n' +
+              '    ];\n' +
+              '    var posicao = 0;\n' +
+              '    function mudarHumor() {\n' +
+              '      posicao = (posicao + 1) % estados.length;\n' +
+              '      document.getElementById("abobora").innerText = estados[posicao].emoji;\n' +
+              '      document.getElementById("status-texto").innerText = "Estado: " + estados[posicao].texto;\n' +
+              '    }\n' +
+              '  <\/script>\n' +
+              '</body>\n' +
+              '</html>'
+    },
+    lab2: {
+        html: '<div class="caldeirao-box">\n' +
+              '  <h2>&#x1F9D9; Caldeir&#227;o de Po&#231;&#245;es</h2>\n' +
+              '  <div class="emoji-caldeirao">&#x1F963;</div>\n' +
+              '  <p id="msg-pocao">Clique para preparar um elixir!</p>\n' +
+              '  <button onclick="sortearPocao()">&#x2728; Mexer o Caldeir&#227;o</button>\n' +
+              '</div>',
+        css: 'body { font-family: sans-serif; background: #1e102d; color: #f1f5f9; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }\n' +
+             '.caldeirao-box { background: #2b1840; padding: 30px; border-radius: 20px; text-align: center; border: 2px solid #a855f7; box-shadow: 0 0 20px rgba(168, 85, 247, 0.3); }\n' +
+             '.emoji-caldeirao { font-size: 4rem; margin: 10px 0; }\n' +
+             '#msg-pocao { font-size: 1.1rem; color: #4ade80; font-weight: bold; }\n' +
+             'button { background: #a855f7; color: white; border: none; padding: 12px 24px; border-radius: 25px; font-weight: bold; cursor: pointer; }',
+        js: 'var listaPocoes = [\n' +
+            '  "\\u2615 Po\\u00E7\\u00E3o do Caf\\u00E9 Infinito",\n' +
+            '  "\\uD83D\\uDCA8 Elixir da Invisibilidade Tempor\\u00E1ria",\n' +
+            '  "\\uD83C\\uDF1F Feiti\\u00E7o da Linha de C\\u00F3digo Sem Bugs",\n' +
+            '  "\\uD83C\\uDF6C Xarope de Ab\\u00F3bora Caramelizada",\n' +
+            '  "\\uD83E\\uDD89 Concentrado de Sabedoria de Coruja"\n' +
+            '];\n\n' +
+            'function sortearPocao() {\n' +
+            '  var sorteada = listaPocoes[Math.floor(Math.random() * listaPocoes.length)];\n' +
+            '  document.getElementById("msg-pocao").innerText = sorteada;\n' +
+            '}',
+        tudo: '<!DOCTYPE html>\n' +
+              '<html lang="pt-BR">\n' +
+              '<head>\n' +
+              '  <meta charset="UTF-8">\n' +
+              '  <title>Lab 2 - Gerador de Po&#231;&#245;es M&#225;gicas</title>\n' +
+              '  <style>\n' +
+              '    body { font-family: sans-serif; background: #1e102d; color: #f1f5f9; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }\n' +
+              '    .caldeirao-box { background: #2b1840; padding: 30px; border-radius: 20px; text-align: center; border: 2px solid #a855f7; }\n' +
+              '    button { background: #a855f7; color: white; border: none; padding: 12px 24px; border-radius: 25px; font-weight: bold; cursor: pointer; }\n' +
+              '  </style>\n' +
+              '</head>\n' +
+              '<body>\n' +
+              '  <div class="caldeirao-box">\n' +
+              '    <h2>&#x1F9D9; Caldeir&#227;o de Po&#231;&#245;es</h2>\n' +
+              '    <p id="msg-pocao">Clique para preparar um elixir!</p>\n' +
+              '    <button onclick="sortearPocao()">&#x2728; Mexer o Caldeir&#227;o</button>\n' +
+              '  </div>\n' +
+              '  <script>\n' +
+              '    var listaPocoes = ["\\u2615 Po\\u00E7\\u00E3o do Caf\\u00E9 Infinito", "\\uD83D\\uDCA8 Elixir da Invisibilidade", "\\uD83C\\uDF1F Feiti\\u00E7o Sem Bugs", "\\uD83C\\uDF6C Xarope de Ab\\u00F3bora", "\\uD83E\\uDD89 Sabedoria de Coruja"];\n' +
+              '    function sortearPocao() {\n' +
+              '      var s = listaPocoes[Math.floor(Math.random() * listaPocoes.length)];\n' +
+              '      document.getElementById("msg-pocao").innerText = s;\n' +
+              '    }\n' +
+              '  <\/script>\n' +
+              '</body>\n' +
+              '</html>'
+    },
+    lab3: {
+        html: '<div class="cesto-box">\n' +
+              '  <h2>&#x1F9FA; Doces ou Travessuras</h2>\n' +
+              '  <div class="total-display">Doces: <span id="num-doces">0</span></div>\n' +
+              '  <button class="btn-ganhar" onclick="ajustarDoces(1)">&#x1F36C; Pedir Doce (+1)</button>\n' +
+              '  <button class="btn-comer" onclick="ajustarDoces(-1)">&#x1F9B7; Comer Doce (-1)</button>\n' +
+              '</div>',
+        css: 'body { font-family: sans-serif; background: #0b132b; color: white; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }\n' +
+             '.cesto-box { background: #1c2541; padding: 30px; border-radius: 18px; text-align: center; border: 2px solid #facc15; }\n' +
+             '.total-display { font-size: 2rem; color: #facc15; font-weight: 900; margin: 14px 0; }\n' +
+             'button { border: none; padding: 10px 18px; border-radius: 20px; font-weight: bold; cursor: pointer; margin: 4px; }\n' +
+             '.btn-ganhar { background: #22c55e; color: white; }\n' +
+             '.btn-comer { background: #ef4444; color: white; }',
+        js: 'var doces = 0;\n\n' +
+            'function ajustarDoces(quantidade) {\n' +
+            '  doces = Math.max(0, doces + quantidade);\n' +
+            '  document.getElementById("num-doces").innerText = doces;\n' +
+            '}',
+        tudo: '<!DOCTYPE html>\n' +
+              '<html lang="pt-BR">\n' +
+              '<head>\n' +
+              '  <meta charset="UTF-8">\n' +
+              '  <title>Lab 3 - Contador de Doces</title>\n' +
+              '  <style>\n' +
+              '    body { font-family: sans-serif; background: #0b132b; color: white; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }\n' +
+              '    .cesto-box { background: #1c2541; padding: 30px; border-radius: 18px; text-align: center; border: 2px solid #facc15; }\n' +
+              '    .total-display { font-size: 2rem; color: #facc15; font-weight: 900; margin: 14px 0; }\n' +
+              '    button { border: none; padding: 10px 18px; border-radius: 20px; font-weight: bold; cursor: pointer; margin: 4px; }\n' +
+              '    .btn-ganhar { background: #22c55e; color: white; }\n' +
+              '    .btn-comer { background: #ef4444; color: white; }\n' +
+              '  </style>\n' +
+              '</head>\n' +
+              '<body>\n' +
+              '  <div class="cesto-box">\n' +
+              '    <h2>&#x1F9FA; Doces ou Travessuras</h2>\n' +
+              '    <div class="total-display">Doces: <span id="num-doces">0</span></div>\n' +
+              '    <button class="btn-ganhar" onclick="ajustarDoces(1)">&#x1F36C; Pedir Doce (+1)</button>\n' +
+              '    <button class="btn-comer" onclick="ajustarDoces(-1)">&#x1F9B7; Comer Doce (-1)</button>\n' +
+              '  </div>\n' +
+              '  <script>\n' +
+              '    var doces = 0;\n' +
+              '    function ajustarDoces(q) {\n' +
+              '      doces = Math.max(0, doces + q);\n' +
+              '      document.getElementById("num-doces").innerText = doces;\n' +
+              '    }\n' +
+              '  <\/script>\n' +
+              '</body>\n' +
+              '</html>'
+    }
+};
+
+window.addEventListener('DOMContentLoaded', function () {
+    ['lab1', 'lab2', 'lab3'].forEach(function (labKey) {
+        ['html', 'css', 'js', 'tudo'].forEach(function (tipo) {
+            var pre = document.querySelector('#' + labKey + '-pane-' + tipo + ' pre');
+            if (pre) pre.textContent = CODIGOS_LABS[labKey][tipo];
+        });
+    });
+});
+
+function trocarAbaPrincipal(idAba, btn) {
+    document.querySelectorAll('.tab-btn').forEach(function (b) { b.classList.remove('active'); });
+    document.querySelectorAll('.tab-content').forEach(function (c) { c.classList.remove('active'); });
+    btn.classList.add('active');
+    document.getElementById(idAba).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function trocarAbaCodigo(labKey, tipo, btn) {
+    var card = document.getElementById('card-' + labKey);
+    card.querySelectorAll('.code-tab-btn').forEach(function (b) { b.classList.remove('active'); });
+    card.querySelectorAll('.code-pane').forEach(function (p) { p.classList.remove('active'); });
+    btn.classList.add('active');
+    document.getElementById(labKey + '-pane-' + tipo).classList.add('active');
+}
+
+function copiarTrechoLab(labKey, btn) {
+    var card = document.getElementById('card-' + labKey);
+    var paneAtiva = card.querySelector('.code-pane.active pre');
+    if (!paneAtiva) return;
+    navigator.clipboard.writeText(paneAtiva.textContent).then(function () {
+        var original = btn.textContent;
+        btn.textContent = '\u2705 Copiado!';
+        setTimeout(function () { btn.textContent = original; }, 1800);
+    });
+}
+
+function abrirNoOneCompiler(labKey) {
+    var codigoCompleto = CODIGOS_LABS[labKey].tudo;
+    var url = 'https://onecompiler.com/html?code=' + encodeURIComponent(codigoCompleto);
+    window.open(url, '_blank');
+}
+
+var humoresDemo = [
+    { emoji: "\uD83C\uDF83", texto: "Ab\u00F3bora Sorridente" },
+    { emoji: "\uD83D\uDC7B", texto: "Fantasminha Amig\u00E1vel" },
+    { emoji: "\uD83E\uDDDB", texto: "Vampiro Noturno" },
+    { emoji: "\uD83D\uDC80", texto: "Esqueleto Tagarela" }
+];
+var idxLab1 = 0;
+function executarDemoLab1() {
+    idxLab1 = (idxLab1 + 1) % humoresDemo.length;
+    document.getElementById("demo-lab1-emoji").innerText = humoresDemo[idxLab1].emoji;
+    document.getElementById("demo-lab1-txt").innerText = "Estado: " + humoresDemo[idxLab1].texto;
+}
+
+var pocoesDemo = [
+    "\u2615 Po\u00E7\u00E3o do Caf\u00E9 Infinito (100% de \u00E2nimo nos estudos!)",
+    "\uD83D\uDCA8 Elixir da Invisibilidade Tempor\u00E1ria",
+    "\uD83C\uDF1F Feiti\u00E7o da Linha de C\u00F3digo Sem Bugs",
+    "\uD83C\uDF6C Xarope de Ab\u00F3bora Caramelizada com Canela",
+    "\uD83E\uDD89 Concentrado de Sabedoria de Coruja"
+];
+function executarDemoLab2() {
+    var sorteada = pocoesDemo[Math.floor(Math.random() * pocoesDemo.length)];
+    document.getElementById("demo-lab2-resultado").innerText = sorteada;
+}
+
+var docesDemo = 0;
+function executarDemoLab3(qtd) {
+    docesDemo = Math.max(0, docesDemo + qtd);
+    document.getElementById("demo-lab3-num").innerText = docesDemo;
+}
+
+var respostasQuiz = {};
+
+function responderQuiz(qId, btn, correta) {
+    var box = document.getElementById(qId);
+    box.querySelectorAll('.opt-choice').forEach(function (b) {
+        b.classList.remove('correct', 'wrong');
+        b.classList.add('locked');
+    });
+    if (correta) {
+        btn.classList.add('correct');
+        respostasQuiz[qId] = true;
+    } else {
+        btn.classList.add('wrong');
+        respostasQuiz[qId] = false;
+    }
+}
+
+function calcularResultadoQuiz() {
+    var acertos = 0;
+    for (var i = 1; i <= 5; i++) {
+        if (respostasQuiz['q' + i] === true) acertos++;
+    }
+    var box = document.getElementById("quiz-resultado-box");
+    box.classList.add("show");
+    document.getElementById("score-display").innerText = acertos + " / 5";
+    var fb = document.getElementById("feedback-magico");
+    if (acertos === 5) {
+        fb.innerText = "\uD83E\uDDD9 Mestre Supremo da Magia! Voc\u00EA gabaritou tudo!";
+        fb.style.color = "var(--green)";
+    } else if (acertos >= 3) {
+        fb.innerText = "\uD83C\uDF83 Fant\u00E1stico! Voc\u00EA conhece muito sobre o folclore do Halloween!";
+        fb.style.color = "var(--orange)";
+    } else {
+        fb.innerText = "\uD83E\uDD87 Bom come\u00E7o! Leia as abas de hist\u00F3ria e tente novamente!";
+        fb.style.color = "var(--yellow)";
+    }
+    box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+</script>
+
+
+</body></html>
